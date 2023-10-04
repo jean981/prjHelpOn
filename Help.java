@@ -1,71 +1,105 @@
 public class Help {
+    void showMenu(){
+        System.out.println("#--------------#");
+        System.out.println("# Help on: \t   #");
+        System.out.println("#--------------#");
+        System.out.println("\t1. if");
+        System.out.println("\t2. switch");
+        System.out.println("\t3. for");
+        System.out.println("\t4. while");
+        System.out.println("\t5. do-while");
+        System.out.println("\t6. break");
+        System.out.println("\t7. continue");
+        System.out.println("#--------------#");
+        System.out.print("Choose one (q to quit): ");
+
+    }
+    boolean isValid(int ch){
+        if ((ch < '1' | ch > '7' & ch != 'q')){
+            return false;
+        } else{
+            return true;
+        }
+
+    }
+    void helpOn(int what){
+        switch (what){
+            case '1':
+                System.out.println("---------------------------");
+                System.out.println("The if: \n");
+                System.out.println("if (condition) statement;");
+                System.out.println("else statement;");
+                System.out.println("---------------------------");
+                break;
+            case '2':
+                System.out.println("---------------------------");
+                System.out.println("The switch: \n");
+                System.out.println("switch (expression){");
+                System.out.println("case constatnt: ");
+                System.out.println("statement sequence");
+                System.out.println("break;");
+                System.out.println("// ...");
+                System.out.println("---------------------------");
+                break;
+            case '3':
+                System.out.println("---------------------------");
+                System.out.println("The for: \n");
+                System.out.println("for (init; condition; iteration)");
+                System.out.println("statement;");
+                System.out.println("---------------------------");
+                break;
+            case '4':
+                System.out.println("---------------------------");
+                System.out.println("The while: \n");
+                System.out.println("while (condition) statement;");
+                System.out.println("---------------------------");
+                break;
+            case '5':
+                System.out.println("---------------------------");
+                System.out.println("The do-while: \n");
+                System.out.println("do {");
+                System.out.println("    statement;");
+                System.out.println("} while (condition);");
+                System.out.println("---------------------------");
+                break;
+            case '6':
+                System.out.println("---------------------------");
+                System.out.println("The break: \n");
+                System.out.println("break; or break label;");
+                System.out.println("---------------------------");
+                break;
+            case '7':
+                System.out.println("---------------------------");
+                System.out.println("The continue: \n");
+                System.out.println("continue; or continue label;");
+                System.out.println("---------------------------");
+                break;
+            default:
+                System.out.println("Selection not found.");
+        }
+    }
+}
+class HelpClassDemo{
     public static void main(String[] args) throws java.io.IOException {
+
         char choice, ignore;
+        Help helpObj = new Help();
 
         for (;;){
             do {
-                System.out.println("#--------------#");
-                System.out.println("# Help on: \t   #");
-                System.out.println("#--------------#");
-                System.out.println("\t1. if");
-                System.out.println("\t2. switch");
-                System.out.println("\t3. for");
-                System.out.println("\t4. while");
-                System.out.println("\t5. do-while");
-                System.out.println("\t6. break");
-                System.out.println("\t7. continue");
-                System.out.println("#--------------#");
-                System.out.print("Choose one (q to quit): ");
-
+                helpObj.showMenu();
                 choice = (char) System.in.read();
 
                 do {
                     ignore = (char) System.in.read();
                 } while (ignore != '\n');
-            }while (choice < '1' | choice > '7' & choice != 'q');
+            }while (!helpObj.isValid(choice));
 
             if(choice == 'q')
                 break;
 
-            switch (choice){
-                case '1':
-                    System.out.println("The if: \n");
-                    System.out.println("if (condition) statement;");
-                    System.out.println("else statement;");
-                    break;
-                case '2':
-                    System.out.println("The switch: \n");
-                    System.out.println("switch (expression){");
-                    System.out.println("case constatnt: ");
-                    System.out.println("statement sequence");
-                    System.out.println("break;");
-                    System.out.println("// ...");
-                case '3':
-                    System.out.println("The for: \n");
-                    System.out.println("for (init; condition; iteration)");
-                    System.out.println("statement;");
-                    break;
-                case '4':
-                    System.out.println("The while: \n");
-                    System.out.println("while (condition) statement;");
-                    break;
-                case '5':
-                    System.out.println("The do-while: \n");
-                    System.out.println("do {");
-                    System.out.println("    statement;");
-                    System.out.println("} while (condition);");
-                    break;
-                case '6':
-                    System.out.println("The break: \n");
-                    System.out.println("break; or break label;");
-                    break;
-                case '7':
-                    System.out.println("The continue: \n");
-                    System.out.println("continue; or continue label;");
-                    break;
-                default:
-                    System.out.println("Selection not found.");
-            }
+            System.out.println("\n");
+            helpObj.helpOn(choice);
         }
     }
 }
